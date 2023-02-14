@@ -4,7 +4,8 @@
   "description": "The goal of this project is to practice Test Driven Development by creating a 'Battleship' game.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test:": "jest",
+    "watch": "jest --watch *.js"
   },
   "repository": {
     "type": "git",
@@ -26,5 +27,8 @@
     "prettier": "2.8.4",
     "webpack": "^5.75.0",
     "webpack-cli": "^5.0.1"
+  },
+  "dependencies": {
+    "eslint-plugin-jest": "^27.2.1"
   }
 }

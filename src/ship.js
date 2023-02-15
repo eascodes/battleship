@@ -1,17 +1,16 @@
  // eslint-disable-next-line import/prefer-default-export
  export const Ship = (lengthNum) => {
      const shipLength = lengthNum;
-     const hitNum = 0;
-     const hit = (obj) => {
-        const newObj = {...obj};
-        newObj.hitNum = obj.hitNum + 1;
-        return newObj;
+     let hitNum = 0;
+     const hit = () => {
+        hitNum += 1;
      }
-     const isSunk = (obj) => {
-        if (obj.hitNum >= obj.shipLength) {
+     const getHitNum = () => hitNum;
+     const isSunk = () => {
+        if (hitNum >= shipLength) {
             return true;
         } 
             return false; 
      }
-     return { shipLength, hitNum, hit, isSunk }
+     return { shipLength, hitNum, hit, getHitNum, isSunk }
  }

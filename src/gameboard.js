@@ -35,15 +35,27 @@ export const Gameboard = () => {
     const board = buildBoard();
     const objList = buildObjList(board);
 
-    const placeShip = (x,y) => {
-        const newShip = Ship();
-        const start = [x,y];
-        const index = findIndex(board, start);
+    const placeShip = (coord, shipLength, position) => {
+        const newShip = Ship(shipLength);
+        const target = [coord[0], coord[1]];
+        const index = findIndex(board, target);
         objList[index].ship = newShip;
+
+        if (position === "x") {
+            for (let i=1; i < shipLength; i+= 1) {
+                objList[index+i].ship = newShip;
+            }
+        } else {
+            let j = 10;
+            for (let i=1; i < shipLength; i+= 1) {
+                objList[index-j].ship = newShip;
+                j += 10;
+            }
+        }
     }
 
-    const hasShip = (x,y) => {
-        const target = [x,y];
+    const hasShip = (coord) => {
+        const target = [coord[0], coord[1]];
         const index = findIndex(board, target);
         if (objList[index].ship != null) {
             return true;

@@ -63,6 +63,17 @@ export const Gameboard = () => {
         return false;
     }
 
-    return { board, objList, placeShip, hasShip }
+    const receiveAttack = (coord) => {
+        const target = [coord[0], coord[1]];
+        const index = findIndex(board, target);
+        if (objList[index].ship != null) {
+            objList[index].ship.hit();
+            objList[index].attacked = true;
+        } else {
+            objList[index].attacked = true;
+        }
+    }
+
+    return { board, objList, placeShip, hasShip, receiveAttack }
 
 }

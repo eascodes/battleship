@@ -17,3 +17,11 @@ test('Place a 2-square vertical ship at a specified location on gameboard', () =
     game.placeShip([2,0], 2, "y");
     expect(game.hasShip([1,0])).toBe(true);
 });
+
+test('Increases hit number of correct ship if ship coordinate is attacked', () => {
+    const game = Gameboard();
+    game.placeShip([0,0], 2, "x");
+    game.receiveAttack([0,1]);
+    expect(game.objList[1].ship.getHitNum()).toBe(1);
+});
+

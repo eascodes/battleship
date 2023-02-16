@@ -74,6 +74,18 @@ export const Gameboard = () => {
         }
     }
 
-    return { board, objList, placeShip, hasShip, receiveAttack }
+    const allShipsSunk = () => {
+        let result = true;
+        for (let i=0; i < objList.length; i+= 1) {
+            if (objList[i].ship) {
+                if (objList[i].ship.isSunk() !== true) {
+                    result = false;
+                }
+            }
+        }
+        return result;
+    }
+
+    return { board, objList, placeShip, hasShip, receiveAttack, allShipsSunk }
 
 }

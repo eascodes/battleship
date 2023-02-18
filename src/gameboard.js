@@ -1,6 +1,6 @@
 import { Ship } from "./ship";
 
-function findIndex(arr, target) {
+export function findIndex(arr, target) {
     for (let i=0; i < arr.length; i+= 1) {
         if (arr[i][0] === target[0] && arr[i][1] === target[1]) {
             return i;
@@ -8,7 +8,6 @@ function findIndex(arr, target) {
     }
 }
 
-/* eslint-disable import/prefer-default-export */
 export const Gameboard = () => {
 
     const buildBoard = () => {

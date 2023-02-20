@@ -34,6 +34,7 @@ function randomCoordRandomPos(position, shipLength) {
 
 export const Gameboard = () => {
 
+    // Build array of coordinates
     const buildBoard = () => {
         const board = [];
         for (let j=0; j < 10; j+= 1) {
@@ -44,6 +45,7 @@ export const Gameboard = () => {
         return board;
     }
 
+    // Build array w/ info object for each gameboard square
     const buildObjList = (arr) => {
         const newArr = [];
         for (let i=0; i < arr.length; i+= 1) {
@@ -58,6 +60,7 @@ export const Gameboard = () => {
     const board = buildBoard();
     const objList = buildObjList(board);
 
+    // Place ship at specific coordinates
     const placeShip = (coord, shipLength, position) => {
         const newShip = Ship(shipLength);
         const target = [coord[0], coord[1]];
@@ -77,6 +80,7 @@ export const Gameboard = () => {
         }
     }
 
+    // Place all ships randomly on gameboard
     const placeRandomShips = () => {
         // Place carrier - 5 spaces
         const carrierPos = randomPosition();
@@ -104,6 +108,7 @@ export const Gameboard = () => {
         placeShip(destroyCoord, 2, destroyPos);
     }
 
+    // Check if a square contains a ship
     const hasShip = (coord) => {
         const target = [coord[0], coord[1]];
         const index = findIndex(board, target);
@@ -113,6 +118,7 @@ export const Gameboard = () => {
         return false;
     }
 
+    // Increase hit number of ship if contained in attacked square
     const receiveAttack = (coord) => {
         const target = [coord[0], coord[1]];
         const index = findIndex(board, target);
@@ -124,6 +130,7 @@ export const Gameboard = () => {
         }
     }
 
+    // Return true if all ships on board have been sunk
     const allShipsSunk = () => {
         let result = true;
         for (let i=0; i < objList.length; i+= 1) {

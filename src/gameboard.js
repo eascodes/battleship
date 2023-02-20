@@ -1,4 +1,5 @@
 import { Ship } from "./ship";
+import { randomInteger } from "./player";
 
 export function findIndex(arr, target) {
     for (let i=0; i < arr.length; i+= 1) {
@@ -6,6 +7,29 @@ export function findIndex(arr, target) {
             return i;
         }
     }
+}
+
+// Return random x or y position
+function randomPosition() {
+    const randomInt = randomInteger(0,1);
+    if (randomInt === 0) return "x";  
+    return "y";
+}
+
+// Return random coordinates based on random position & specified ship length
+function randomCoordRandomPos(position, shipLength) {
+    let randomX;
+    let randomY;
+    if (position === "x") {
+        randomX = randomInteger(0,9);
+        randomY = randomInteger(0,(9-(shipLength - 1)));
+        
+    } else {
+        randomX = randomInteger((0+(shipLength - 1)),9);
+        randomY = randomInteger(0,9);
+    }
+    const randomCoord = [randomX, randomY];
+    return randomCoord;   
 }
 
 export const Gameboard = () => {
@@ -53,6 +77,33 @@ export const Gameboard = () => {
         }
     }
 
+    const placeRandomShips = () => {
+        // Place carrier - 5 spaces
+        const carrierPos = randomPosition();
+        const carrierCoord = randomCoordRandomPos(carrierPos, 5);
+        placeShip(carrierCoord, 5, carrierPos);
+
+        // Place battleship - 4 spaces
+        const battlePos = randomPosition();
+        const battleCoord = randomCoordRandomPos(battlePos, 4);
+        placeShip(battleCoord, 4, battlePos);
+
+        // Place cruiser - 3 spaces
+        const cruiserPos = randomPosition();
+        const cruiserCoord = randomCoordRandomPos(cruiserPos, 3);
+        placeShip(cruiserCoord, 3, cruiserPos);
+
+        // Place submarine - 3 spaces
+        const subPos = randomPosition();
+        const subCoord = randomCoordRandomPos(subPos, 3);
+        placeShip(subCoord, 3, subPos);
+
+        // Place destroyer - 2 spaces
+        const destroyPos = randomPosition();
+        const destroyCoord = randomCoordRandomPos(destroyPos, 2);
+        placeShip(destroyCoord, 2, destroyPos);
+    }
+
     const hasShip = (coord) => {
         const target = [coord[0], coord[1]];
         const index = findIndex(board, target);
@@ -85,6 +136,6 @@ export const Gameboard = () => {
         return result;
     }
 
-    return { board, objList, placeShip, hasShip, receiveAttack, allShipsSunk }
+    return { board, objList, placeShip, placeRandomShips, hasShip, receiveAttack, allShipsSunk }
 
 }

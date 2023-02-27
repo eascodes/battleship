@@ -60,6 +60,27 @@ export const Gameboard = () => {
     const board = buildBoard();
     const objList = buildObjList(board);
 
+    // Return true if there is no ship overlap
+    const avoidOverlap = (coord, shipLength, position) => {
+        let allClear = true;
+        const target = [coord[0], coord[1]];
+        const index = findIndex(board, target);
+        if (objList[index].ship != null) allClear = false;
+
+        if (position === "x") {
+            for (let i=1; i < shipLength; i+= 1) {
+                if (objList[index+i].ship != null) allClear = false;
+            }
+        } else {
+            let j = 10;
+            for (let i=1; i < shipLength; i+= 1) {
+                if (objList[index-j].ship != null) allClear = false;
+                j += 10;
+            }
+        }
+        return allClear;
+    }
+
     // Place ship at specific coordinates
     const placeShip = (coord, shipLength, position) => {
         const newShip = Ship(shipLength);
@@ -82,30 +103,24 @@ export const Gameboard = () => {
 
     // Place all ships randomly on gameboard
     const placeRandomShips = () => {
-        // Place carrier - 5 spaces
-        const carrierPos = randomPosition();
-        const carrierCoord = randomCoordRandomPos(carrierPos, 5);
-        placeShip(carrierCoord, 5, carrierPos);
+        
+        function placePresets(shipLength) {
+            const shipPos = randomPosition();
+            const shipCoord = randomCoordRandomPos(shipPos, shipLength);
+            // Place ship on board if there is no overlap, otherwise recursively call f(x)
+            if (avoidOverlap(shipCoord, shipLength, shipPos) === true) {
+                placeShip(shipCoord, shipLength, shipPos);
+            } else {
+                placePresets(shipLength);
+            }
+        }
 
-        // Place battleship - 4 spaces
-        const battlePos = randomPosition();
-        const battleCoord = randomCoordRandomPos(battlePos, 4);
-        placeShip(battleCoord, 4, battlePos);
-
-        // Place cruiser - 3 spaces
-        const cruiserPos = randomPosition();
-        const cruiserCoord = randomCoordRandomPos(cruiserPos, 3);
-        placeShip(cruiserCoord, 3, cruiserPos);
-
-        // Place submarine - 3 spaces
-        const subPos = randomPosition();
-        const subCoord = randomCoordRandomPos(subPos, 3);
-        placeShip(subCoord, 3, subPos);
-
-        // Place destroyer - 2 spaces
-        const destroyPos = randomPosition();
-        const destroyCoord = randomCoordRandomPos(destroyPos, 2);
-        placeShip(destroyCoord, 2, destroyPos);
+        // Place each preset battleship on board
+        placePresets(5);
+        placePresets(4);
+        placePresets(3);
+        placePresets(3);
+        placePresets(2);
     }
 
     // Check if a square contains a ship

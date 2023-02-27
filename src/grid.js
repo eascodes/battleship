@@ -2,10 +2,13 @@
 
 export function displayGrid(container, player, gameboard) {
     const list = gameboard.objList;
+    
+    // Create squares for boards
     for (let i=0; i < 100; i+= 1) {
         const square = document.createElement("div");
         square.classList.add("square");
         
+        // Add appropriate square classes
         if (list[i].ship != null && list[i].attacked === null) {
             square.classList.add("ship");
         } else if (list[i].ship != null && list[i].attacked === true) {
@@ -14,6 +17,7 @@ export function displayGrid(container, player, gameboard) {
             square.classList.add("hit-miss");
         }
 
+        // Add event listeners to check for attacks
         if (player.activeTurn === false) {
             square.classList.add("active");
             square.addEventListener("click", () => {

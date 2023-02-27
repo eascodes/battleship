@@ -33,6 +33,18 @@
     height: 10%;
 }
 
+.square.active:hover {
+    background-color: green
+}
+
 .ship {
     background-color: black;
+}
+
+.hit-ship {
+    background-color: red;
+}
+
+.hit-miss {
+    background-color: blue;
 }

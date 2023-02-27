@@ -1,30 +1,27 @@
-import { findIndex } from "./gameboard";
-
 // Return random integer
 export function randomInteger(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min);
   }
 
 // Return random coordinates contained within board
-function randomCoord(game) {
-    const coord = [(randomInteger(0,9)),(randomInteger(0,9))];
-    const index = findIndex(game.board, coord);
+function randomIndex(game) {
+    const index = randomInteger(0,99);
     if (game.objList[index].attacked === null) {
-        return coord;
+        return index;
     } 
-        randomCoord(game);
-    return coord;
+        randomIndex(game);
+    return index;
 }
 
 export const Player = (enemyGame) => {
 
-    const sendAttack = (coord) => {
-        if (!coord) {
+    const sendAttack = (ind) => {
+        if (!ind) {
             // Attack random square if no coordinates specified
-            const random = randomCoord(enemyGame);
+            const random = randomIndex(enemyGame);
             enemyGame.receiveAttack(random);
         } else {
-            enemyGame.receiveAttack(coord);
+            enemyGame.receiveAttack(ind);
         }
     }
 

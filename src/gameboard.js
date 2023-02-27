@@ -60,21 +60,48 @@ export const Gameboard = () => {
     const board = buildBoard();
     const objList = buildObjList(board);
 
-    // Return true if there is no ship overlap
+    // Return true if there is no ship overlap & ship is 1 space apart from other ships
     const avoidOverlap = (coord, shipLength, position) => {
         let allClear = true;
         const target = [coord[0], coord[1]];
         const index = findIndex(board, target);
         if (objList[index].ship != null) allClear = false;
 
+        function checkLeft(ind) {
+            if (objList[ind-1] !== undefined && objList[ind-1].ship !== null) allClear = false;
+        }
+
+        function checkRight(ind) {
+            if (objList[ind+1] !== undefined && objList[ind+1].ship !== null) allClear = false;
+        }
+            
+        function checkAbove(ind) {
+            if (objList[ind-10] !== undefined && objList[ind-10].ship !== null) allClear = false;
+        }
+
+        function checkBelow(ind) {
+            if (objList[ind+10] !== undefined && objList[ind+10].ship !== null) allClear = false;
+        }    
+
+        checkLeft(index);
+        checkRight(index);
+        checkAbove(index);
+        checkBelow(index);
+
         if (position === "x") {
             for (let i=1; i < shipLength; i+= 1) {
                 if (objList[index+i].ship != null) allClear = false;
+                checkRight(index+i);
+                checkAbove(index+i);
+                checkBelow(index+i);
             }
         } else {
             let j = 10;
             for (let i=1; i < shipLength; i+= 1) {
                 if (objList[index-j].ship != null) allClear = false;
+                checkLeft(index-j);
+                checkRight(index-j);
+                checkAbove(index-j);
                 j += 10;
             }
         }

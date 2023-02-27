@@ -13,7 +13,7 @@ function randomCoord(game) {
         return coord;
     } 
         randomCoord(game);
-    
+    return coord;
 }
 
 export const Player = (enemyGame) => {

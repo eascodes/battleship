@@ -9,8 +9,7 @@ function randomIndex(game) {
     if (game.objList[index].attacked === null) {
         return index;
     } 
-        randomIndex(game);
-    return index;
+    return randomIndex(game);
 }
 
 export const Player = (enemyGame) => {

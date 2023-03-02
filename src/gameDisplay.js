@@ -29,7 +29,7 @@ export const gameDisplay = (grid1, grid2, gameboard1, gameboard2, player1, playe
                     if (checkGameboards() === true) {
                         console.log("GAME OVER!");
                     } else {
-                        computerPlay();
+                        return computerPlay();
                     }
                 } else {
                     // Restart turn if square has already been attacked

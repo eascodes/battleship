@@ -63,7 +63,6 @@ export const gameDisplay = (grid1, grid2, gameboard1, gameboard2, player1, playe
     const computerPlay = () => {
         player2.sendAttack();
         refreshGrids();
-        displayWinner();
         if (checkGameboards() === true) {
             displayWinner();
         } else {

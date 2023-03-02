@@ -1,9 +1,10 @@
 /* eslint-disable import/prefer-default-export */
 
-export function displayGrid(container, player, gameboard) {
+export const Grid = (container, player, gameboard) => {
     const list = gameboard.objList;
     
     // Create squares for boards
+    const displayGrid = () => {
     for (let i=0; i < 100; i+= 1) {
         const square = document.createElement("div");
         square.classList.add("square");
@@ -17,28 +18,23 @@ export function displayGrid(container, player, gameboard) {
             square.classList.add("hit-miss");
         }
 
-        // Add event listeners to check for attacks
+        // Add/remove active & inactive classes
         if (player.activeTurn === false) {
+            square.classList.remove("inactive");
             square.classList.add("active");
-            square.addEventListener("click", () => {
-                gameboard.receiveAttack(i);
-                refreshGrid(container, player, gameboard);
-            })
         } else {
             square.classList.remove("active");
+            square.classList.add("inactive");
         }
 
         container.appendChild(square);
-    }
-}
+    }}
 
-function removeGrid(container) {
-    while (container.firstChild) {
-        container.removeChild(container.firstChild);
+    const removeGrid = () => {
+        while (container.firstChild) {
+            container.removeChild(container.firstChild);
+        }
     }
-}
 
-export function refreshGrid(container, player, gameboard) {
-    removeGrid(container);
-    displayGrid(container, player, gameboard);
+    return { displayGrid, removeGrid }
 }

@@ -41,10 +41,18 @@
     background-color: black;
 }
 
+.active {
+    background-color: gray;
+}
+
 .hit-ship {
     background-color: red;
 }
 
 .hit-miss {
     background-color: blue;
+}
+
+.test {
+    background-color: pink;
 }

@@ -24,8 +24,8 @@ export const Player = (enemyGame) => {
         }
     }
 
-    const activeTurn = false;
+    const activePlayer = false;
 
-    return { sendAttack, activeTurn }
+    return { sendAttack, activePlayer }
 
 }

@@ -10,7 +10,7 @@ export const Grid = (container, player, gameboard) => {
         square.classList.add("square");
         
         // Add appropriate square classes for human board
-        if (player.activeTurn === true) { 
+        if (player.activePlayer === true) { 
             if (list[i].ship != null && list[i].attacked === null) {
                 square.classList.add("ship");
             } else if (list[i].ship != null && list[i].attacked === true) {

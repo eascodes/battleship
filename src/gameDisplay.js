@@ -25,7 +25,6 @@ export const gameDisplay = (grid1, grid2, gameboard1, gameboard2, player1, playe
                     // Record attack & refresh grid
                     gameboard2.receiveAttack(i);
                     refreshGrids();
-                    player1.activeTurn = false;
                     // Check for winner
                     if (checkGameboards() === true) {
                         console.log("GAME OVER!");
@@ -41,10 +40,7 @@ export const gameDisplay = (grid1, grid2, gameboard1, gameboard2, player1, playe
     }
 
     const computerPlay = () => {
-        player2.activeTurn = true;
         player2.sendAttack();
-        player2.activeTurn = false;
-        player1.activeTurn = true;
         refreshGrids();
         if (checkGameboards() === true) {
             console.log("GAME OVER!");

@@ -18,7 +18,7 @@ const gameLoop = () => {
     const humanGrid = Grid(p1Container, human, humanBoard);
     const computerGrid = Grid(p2Container, computer, computerBoard);
     
-    human.activeTurn = true;
+    human.activePlayer = true;
     humanGrid.displayGrid();
     computerGrid.displayGrid();
 

@@ -59,6 +59,13 @@ h1 {
     }
 }
 
+.instructions {
+    margin: 0;
+    font-size: 1.25rem;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: 700;
+}
+
 h3 {
     font-size: 1.75rem;
     margin-bottom: 0;

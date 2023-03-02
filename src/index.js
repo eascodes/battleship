@@ -40,6 +40,10 @@ const startGameDisplay = () => {
     const label2 = document.createElement("h3");
     label2.textContent = "ENEMY BOARD";
     gridHeader2.appendChild(label2);
+    const instructions = document.createElement("p");
+    instructions.classList.add("instructions");
+    instructions.textContent = "Click a square on the enemy's board to launch an attack!";
+    header.appendChild(instructions);
 
     gameLoop();
 }

@@ -20,13 +20,21 @@ export const gameDisplay = (grid1, grid2, gameboard1, gameboard2, player1, playe
         const gridList = document.querySelectorAll(".active");
         for (let i=0; i<gridList.length; i+=1) {
             gridList[i].addEventListener("click", () => {
-                gameboard2.receiveAttack(i);
-                refreshGrids();
-                player1.activeTurn = false;
-                if (checkGameboards() === true) {
-                    console.log("GAME OVER!");
+                // Only record attack if square hasn't been attacked yet
+                if (gameboard2.objList[i].attacked === null) {
+                    // Record attack & refresh grid
+                    gameboard2.receiveAttack(i);
+                    refreshGrids();
+                    player1.activeTurn = false;
+                    // Check for winner
+                    if (checkGameboards() === true) {
+                        console.log("GAME OVER!");
+                    } else {
+                        computerPlay();
+                    }
                 } else {
-                    computerPlay();
+                    // Restart turn if square has already been attacked
+                    return humanPlay();
                 }
             });
         }

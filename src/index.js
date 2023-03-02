@@ -4,8 +4,12 @@ import { Player } from "./player";
 import { Grid } from "./grid"
 import { gameDisplay } from "./gameDisplay";
 
+const startButton = document.querySelector("#start");
+
 const gameLoop = () => {
-    
+    const header = document.querySelector(".header");
+    header.removeChild(startButton);
+
     const humanBoard = Gameboard();
     humanBoard.placeRandomShips();
     const computerBoard = Gameboard();
@@ -27,6 +31,5 @@ const gameLoop = () => {
     display.humanPlay();
 }
 
-const startButton = document.querySelector("#start");
 startButton.addEventListener("click", gameLoop);
 

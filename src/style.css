@@ -94,6 +94,15 @@ h3 {
     height: 400px;
 }
 
+@media only screen and (max-width: 768px) {
+
+    .p1-container,
+    .p2-container {
+        width: 350px;
+        height: 300px;
+    }
+}
+
 /* GAMEBOARD SQUARES */
 
 .square {

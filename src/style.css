@@ -12,6 +12,18 @@ body {
     font-family: 'Anton';
 }
 
+.header {
+    grid-area: header;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+h1 {
+    margin: 0;
+    font-size: 3.5rem;
+}
+
 .grid-container {
     display: grid;
     grid-template-areas:
@@ -19,8 +31,23 @@ body {
         "player1 player2";
 }
 
-.header {
-    grid-area: header;
+/*
+.grid-header1,
+.grid-header2 {
+    display: flex;
+    justify-content: center;
+}*/
+
+h3 {
+    font-size: 1.75rem;
+    margin-bottom: 0;
+}
+
+.player1,
+.player2 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .player1 {

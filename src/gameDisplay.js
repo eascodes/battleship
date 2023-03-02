@@ -8,12 +8,33 @@ export const gameDisplay = (grid1, grid2, gameboard1, gameboard2, player1, playe
     }
 
     function checkGameboards() {
-        if (gameboard1.allShipsSunk() === true) {
+        if (gameboard1.allShipsSunk() === true || gameboard2.allShipsSunk() === true) {
             return true;        
-        } if (gameboard2.allShipsSunk() === true) {
-            return true;       
-        } 
+        }
             return false;
+    }
+
+    const displayWinner = () => {
+        // Display the winner modal
+        const modal = document.getElementById("myModal");
+        modal.style.display = "block";
+        const modalContent = document.querySelector(".modal-content");
+        const modalText = document.createElement("p");
+        modalContent.appendChild(modalText);
+        // Load the appropriate winner text
+        if (gameboard1.allShipsSunk() === true) {
+            modalText.textContent = "You lost! Better luck next time.";
+        } else {
+            modalText.textContent = "You won! Play again?";
+        }
+
+        // Game reset button
+        const reset = document.createElement("button");
+        modalContent.appendChild(reset);
+        reset.textContent = "NEW GAME";
+        reset.addEventListener("click", () => {
+            location.reload();
+        })
     }
 
     const humanPlay = () => {
@@ -27,7 +48,7 @@ export const gameDisplay = (grid1, grid2, gameboard1, gameboard2, player1, playe
                     refreshGrids();
                     // Check for winner
                     if (checkGameboards() === true) {
-                        console.log("GAME OVER!");
+                        displayWinner();
                     } else {
                         return computerPlay();
                     }
@@ -42,8 +63,9 @@ export const gameDisplay = (grid1, grid2, gameboard1, gameboard2, player1, playe
     const computerPlay = () => {
         player2.sendAttack();
         refreshGrids();
+        displayWinner();
         if (checkGameboards() === true) {
-            console.log("GAME OVER!");
+            displayWinner();
         } else {
             humanPlay();
         }

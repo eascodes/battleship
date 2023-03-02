@@ -1,5 +1,11 @@
+/* eslint-disable import/prefer-default-export */
 // eslint-disable-next-line import/prefer-default-export
-export const gameDisplay = (grid1, grid2, gameboard1, gameboard2, player1, player2) => {
+import { gameLoop } from ".";
+
+
+// Display game page
+export const gameDisplay = (grid1, grid2, gameboard1, gameboard2, player2) => {
+    // Reload both gameboards
     const refreshGrids = () => {
         grid1.removeGrid();
         grid2.removeGrid();
@@ -7,6 +13,7 @@ export const gameDisplay = (grid1, grid2, gameboard1, gameboard2, player1, playe
         grid2.displayGrid();
     }
 
+    // Check gameboards to see if all ships are sunk
     function checkGameboards() {
         if (gameboard1.allShipsSunk() === true || gameboard2.allShipsSunk() === true) {
             return true;        
@@ -36,7 +43,7 @@ export const gameDisplay = (grid1, grid2, gameboard1, gameboard2, player1, playe
             location.reload();
         })
     }
-
+    
     const humanPlay = () => {
         const gridList = document.querySelectorAll(".active");
         for (let i=0; i<gridList.length; i+=1) {
@@ -66,9 +73,36 @@ export const gameDisplay = (grid1, grid2, gameboard1, gameboard2, player1, playe
         if (checkGameboards() === true) {
             displayWinner();
         } else {
+            // Pass turn back to human if no winner yet
             humanPlay();
         }
     }
 
     return { humanPlay, computerPlay }
 }
+
+const startButton = document.querySelector("#start");
+
+// Display headers & instructions
+const startGameDisplay = () => {
+    const gridHeader1 = document.querySelector(".grid-header1");
+    const gridHeader2 = document.querySelector(".grid-header2");
+    const header = document.querySelector(".header");
+    header.removeChild(startButton);
+
+    const label1 = document.createElement("h3");
+    label1.textContent = "YOUR BOARD";
+    gridHeader1.appendChild(label1);
+    const label2 = document.createElement("h3");
+    label2.textContent = "ENEMY BOARD";
+    gridHeader2.appendChild(label2);
+    
+    const instructions = document.createElement("p");
+    instructions.classList.add("instructions");
+    instructions.textContent = "Click a square on the enemy's board to launch an attack!";
+    header.appendChild(instructions);
+
+    gameLoop();
+}
+
+startButton.addEventListener("click", startGameDisplay);

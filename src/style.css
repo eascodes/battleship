@@ -6,9 +6,11 @@
 }
 
 body {
-    background-image: url('./battleship.jpg');
-    background-repeat: no-repeat;
-    background-size: 100vw auto;
+    background: url('./battleship.jpg') no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
     font-family: 'Anton';
 }
 
@@ -48,6 +50,15 @@ h1 {
         "player1 player2";
 }
 
+@media screen and (max-width: 824px) {
+    .grid-container {
+        grid-template-areas:
+            "header"
+            "player1"
+            "player2";
+    }
+}
+
 h3 {
     font-size: 1.75rem;
     margin-bottom: 0;
@@ -75,6 +86,8 @@ h3 {
     width: 400px;
     height: 400px;
 }
+
+/* GAMEBOARD SQUARES */
 
 .square {
     box-sizing: border-box;
@@ -104,11 +117,7 @@ h3 {
     background-color: rgba(0, 0, 0, 0);
 }
 
-.test {
-    background-color: pink;
-}
-
-/* MODAL */
+/* WINNER MODAL */
 
 .modal {
     display: none;

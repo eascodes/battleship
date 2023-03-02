@@ -19,6 +19,22 @@ body {
     align-items: center;
 }
 
+button {
+    background-color: rgb(98, 96, 96);
+    border: none;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-family: 'Anton';
+    font-size: 1.5rem;
+}
+
+button:hover {
+    background-color: rgb(197, 115, 9);
+}
+
 h1 {
     margin: 0;
     font-size: 3.5rem;
@@ -30,13 +46,6 @@ h1 {
         "header header"
         "player1 player2";
 }
-
-/*
-.grid-header1,
-.grid-header2 {
-    display: flex;
-    justify-content: center;
-}*/
 
 h3 {
     font-size: 1.75rem;
@@ -75,7 +84,7 @@ h3 {
 }
 
 .square.active:hover {
-    background-color: green
+    background-color: rgb(197, 115, 9);
 }
 
 .ship {
@@ -91,7 +100,7 @@ h3 {
 }
 
 .hit-miss {
-    background-color: blue;
+    background-color: rgba(0, 0, 0, 0);
 }
 
 .test {

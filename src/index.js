@@ -3,6 +3,7 @@ import { Gameboard } from "./gameboard";
 import { Player } from "./player";
 import { Grid } from "./grid"
 import { gameDisplay, startGameDisplay } from "./gameDisplay";
+import './style.css'
 
 const startButton = document.querySelector("#start");
 const p1Container = document.querySelector(".p1-container");

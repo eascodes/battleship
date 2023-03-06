@@ -1,5 +1,24 @@
-// eslint-disable-next-line import/prefer-default-export
-export const gameDisplay = (grid1, grid2, gameboard1, gameboard2, player1, player2) => {
+export const startGameDisplay = (button) => {
+    // Display headers above gameboards
+    const gridHeader1 = document.querySelector(".grid-header1");
+    const gridHeader2 = document.querySelector(".grid-header2");
+    const header = document.querySelector(".header");
+    header.removeChild(button);
+    const label1 = document.createElement("h3");
+    label1.textContent = "YOUR BOARD";
+    gridHeader1.appendChild(label1);
+    const label2 = document.createElement("h3");
+    label2.textContent = "ENEMY BOARD";
+    gridHeader2.appendChild(label2);
+
+    // Display game instructions
+    const instructions = document.createElement("p");
+    instructions.classList.add("instructions");
+    instructions.textContent = "Click a square on the enemy's board to launch an attack!";
+    header.appendChild(instructions);
+}
+
+export const gameDisplay = (grid1, grid2, gameboard1, gameboard2, player2) => {
     const refreshGrids = () => {
         grid1.removeGrid();
         grid2.removeGrid();
